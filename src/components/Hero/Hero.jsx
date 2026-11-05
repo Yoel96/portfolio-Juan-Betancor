@@ -1,0 +1,93 @@
+import { useRef, useEffect } from 'react';
+import gsap from 'gsap';
+import { FiArrowRight, FiMail } from 'react-icons/fi';
+import styles from './Hero.module.css';
+
+export default function Hero({ visible }) {
+  const eyebrowRef    = useRef(null);
+  const titleRef      = useRef(null);
+  const descRef       = useRef(null);
+  const ctasRef       = useRef(null);
+  const visualRef     = useRef(null);
+  const scrollRef     = useRef(null);
+
+  useEffect(() => {
+    if (!visible) return;
+
+    const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+    tl
+      .to(eyebrowRef.current,  { opacity: 1, y: 0, duration: 0.6 },      0.1)
+      .fromTo(titleRef.current,  { y: 40 }, { opacity: 1, y: 0, duration: 0.8 }, 0.25)
+      .to(descRef.current,     { opacity: 1, y: 0, duration: 0.6 },      0.5)
+      .to(ctasRef.current,     { opacity: 1, y: 0, duration: 0.5 },      0.65)
+      .to(visualRef.current,   { opacity: 1, x: 0, duration: 0.8, ease: 'power4.out' }, 0.3)
+      .to(scrollRef.current,   { opacity: 1, duration: 0.5 },            1.0);
+  }, [visible]);
+
+  return (
+    <section id="hero" className={styles.hero}>
+      <div className={styles.hero__container}>
+        {/* ── Columna izquierda: texto ── */}
+        <div className={styles.hero__content}>
+          <p ref={eyebrowRef} className={styles.hero__eyebrow} style={{ opacity: 0 }}>
+            Portfolio 2025
+          </p>
+
+          <h1 ref={titleRef} className={styles.hero__title}>
+            <span className={styles['hero__title-line']}>
+              <span className={`${styles['hero__title-word']} ${styles['hero__title-name']}`}>
+                Diseño
+              </span>
+              {' '}
+              <span className={`${styles['hero__title-word']} ${styles['hero__title-accent']}`}>
+                &amp;
+              </span>
+            </span>
+            <span className={styles['hero__title-line']}>
+              <span className={`${styles['hero__title-word']} ${styles['hero__title-role']}`}>
+                Desarrollo
+              </span>
+            </span>
+            <span className={styles['hero__title-line']}>
+              <span className={`${styles['hero__title-word']} ${styles['hero__title-name']}`}>
+                Web.
+              </span>
+            </span>
+          </h1>
+
+          <p ref={descRef} className={styles.hero__description} style={{ opacity: 0 }}>
+            Soy <strong>Juan Betancor</strong>, desarrollador frontend y diseñador gráfico.
+            Combino estudios superiores en diseño con formación técnica en DAW para crear
+            experiencias digitales que conectan estética y funcionalidad.
+          </p>
+
+          <div ref={ctasRef} className={styles.hero__ctas} style={{ opacity: 0 }}>
+            <a href="#projects" className="btn btn--primary" id="hero-cta-projects">
+              Ver proyectos <FiArrowRight />
+            </a>
+            <a href="#contact" className="btn btn--outline" id="hero-cta-contact">
+              <FiMail /> Contacto
+            </a>
+          </div>
+        </div>
+
+        {/* ── Columna derecha: visual ── */}
+        <div ref={visualRef} className={styles.hero__visual} style={{ opacity: 0, transform: 'translateX(40px)' }}>
+          <div className={styles.hero__avatar_frame}>
+            <div className={styles.hero__avatar_bg} />
+            <div className={styles.hero__avatar_initials}>JB</div>
+            <div className={styles.hero__avatar_badge}>
+              Disponible para proyectos
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* ── Scroll indicator ── */}
+      <div ref={scrollRef} className={styles.hero__scroll} style={{ opacity: 0 }}>
+        <span className={styles.hero__scroll_text}>Scroll</span>
+        <div className={styles.hero__scroll_line} />
+      </div>
+    </section>
+  );
+}

@@ -1,0 +1,80 @@
+.intro {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: #F8FAFC;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.intro__inner {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0;
+  user-select: none;
+}
+
+/* ── Etiquetas flotantes ── */
+.intro__label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: clamp(0.65rem, 1.2vw, 0.85rem);
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #505A70;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.intro__label--top {
+  align-self: flex-start;
+  margin-bottom: 0.4rem;
+}
+
+.intro__label--bottom {
+  align-self: flex-end;
+  margin-top: 0.4rem;
+}
+
+/* ── Nombres ── */
+.intro__names {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.intro__name {
+  font-family: 'Syne', sans-serif;
+  font-weight: 800;
+  font-size: clamp(4rem, 13vw, 11rem);
+  line-height: 0.9;
+  letter-spacing: -0.04em;
+  white-space: nowrap;
+  display: block;
+  will-change: transform;
+}
+
+.intro__name--juan {
+  color: #0F172A;
+}
+
+.intro__name--betancor {
+  color: #505A70;
+  /* Escalonado hacia la derecha */
+  padding-left: clamp(1.5rem, 4vw, 4rem);
+}
+
+/* ── Línea decorativa ── */
+.intro__line {
+  position: absolute;
+  bottom: -1.2rem;
+  left: 0;
+  width: 0%;
+  height: 2px;
+  background: linear-gradient(90deg, #38BDF8, #818CF8);
+  border-radius: 2px;
+}
