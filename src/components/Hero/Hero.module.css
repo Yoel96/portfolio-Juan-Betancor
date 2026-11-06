@@ -8,18 +8,41 @@
   background: var(--color-bg);
 }
 
-/* ── Grid de fondo decorativo ── */
-.hero::before {
-  content: '';
+/* ── Cuadrícula 3D en perspectiva aplanada y reflejada (Estática) ── */
+.hero__grid_wrapper {
   position: absolute;
   inset: 0;
-  background-image:
-    linear-gradient(rgba(80,90,112,0.05) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(80,90,112,0.05) 1px, transparent 1px);
-  background-size: 60px 60px;
-  mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, black 40%, transparent 100%);
-  -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, black 40%, transparent 100%);
+  overflow: hidden;
   pointer-events: none;
+  z-index: 0;
+  perspective: 1000px;
+  perspective-origin: 45% 42%;
+  mask-image: radial-gradient(ellipse 95% 85% at 50% 45%, black 25%, rgba(0,0,0,0.4) 65%, transparent 95%);
+  -webkit-mask-image: radial-gradient(ellipse 95% 85% at 50% 45%, black 25%, rgba(0,0,0,0.4) 65%, transparent 95%);
+}
+
+.hero__grid_glow {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 900px 550px at 45% 42%, rgba(56, 189, 248, 0.05) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.hero__grid_plane {
+  position: absolute;
+  width: 220vw;
+  height: 200vh;
+  left: -60vw;
+  top: -16vh;
+  transform: rotateX(75deg) rotateY(-3deg) rotateZ(12deg);
+  transform-origin: 50% 45%;
+  transform-style: preserve-3d;
+}
+
+.hero__grid_svg {
+  width: 100%;
+  height: 100%;
+  display: block;
 }
 
 .hero__container {
@@ -106,7 +129,7 @@
   opacity: 0;
 }
 
-/* ── Columna derecha — elemento visual ── */
+/* ── Columna derecha — Avatar fotográfico con marco redondeado ── */
 .hero__visual {
   position: relative;
   display: flex;
@@ -115,71 +138,118 @@
   opacity: 0;
 }
 
-.hero__avatar_frame {
+.hero__avatar_container {
   position: relative;
-  width: clamp(240px, 35vw, 400px);
-  height: clamp(240px, 35vw, 400px);
-}
-
-.hero__avatar_bg {
-  position: absolute;
-  inset: 0;
-  border-radius: 60% 40% 55% 45% / 55% 45% 60% 40%;
-  background: linear-gradient(135deg, #0F172A 0%, #1e3a5f 50%, #505A70 100%);
-  animation: morphBlob 8s ease-in-out infinite;
-}
-
-@keyframes morphBlob {
-  0%   { border-radius: 60% 40% 55% 45% / 55% 45% 60% 40%; }
-  33%  { border-radius: 45% 55% 40% 60% / 60% 40% 55% 45%; }
-  66%  { border-radius: 55% 45% 60% 40% / 40% 60% 45% 55%; }
-  100% { border-radius: 60% 40% 55% 45% / 55% 45% 60% 40%; }
-}
-
-.hero__avatar_initials {
-  position: absolute;
-  inset: 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: var(--font-display);
-  font-size: clamp(4rem, 8vw, 7rem);
-  font-weight: 800;
-  color: rgba(255,255,255,0.15);
-  letter-spacing: -0.04em;
+  width: clamp(380px, 42vw, 480px);
+  cursor: pointer;
 }
 
-.hero__avatar_badge {
+/* Forma geométrica abstracta y sutil detrás (círculo con degradado muy suave en #505A70) */
+.hero__avatar_backdrop {
   position: absolute;
-  bottom: 1rem;
-  right: -1rem;
-  background: var(--color-bg);
-  border: 2px solid var(--color-border);
-  border-radius: var(--radius-lg);
-  padding: 0.75rem 1rem;
-  box-shadow: var(--shadow-md);
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  font-size: 0.8rem;
-  font-weight: 600;
-  color: var(--color-primary);
-  white-space: nowrap;
-}
-
-.hero__avatar_badge::before {
-  content: '';
-  display: block;
-  width: 8px;
-  height: 8px;
-  background: #22C55E;
+  width: clamp(280px, 32vw, 380px);
+  height: clamp(280px, 32vw, 380px);
   border-radius: 50%;
-  animation: pulse 2s ease-in-out infinite;
+  background: radial-gradient(
+    circle at 50% 50%,
+    rgba(80, 90, 112, 0.22) 0%,
+    rgba(80, 90, 112, 0.08) 55%,
+    transparent 72%
+  );
+  filter: blur(28px);
+  transform: translate3d(0, 0, 0);
+  transition:
+    transform 0.55s var(--ease-smooth),
+    opacity 0.55s var(--ease-smooth);
+  pointer-events: none;
+  z-index: 1;
 }
 
-@keyframes pulse {
-  0%, 100% { transform: scale(1); opacity: 1; }
-  50% { transform: scale(1.3); opacity: 0.7; }
+/* Resplandor difuminado complementario para dar soporte y profundidad */
+.hero__avatar_glow {
+  position: absolute;
+  width: clamp(250px, 28vw, 340px);
+  height: clamp(290px, 33vw, 390px);
+  border-radius: 28px;
+  background: linear-gradient(
+    145deg,
+    rgba(80, 90, 112, 0.12) 0%,
+    rgba(15, 23, 42, 0.03) 100%
+  );
+  filter: blur(14px);
+  transform: rotate(-3deg);
+  transition: transform 0.55s var(--ease-smooth);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Marco con borde y radio para contener la silueta y cerrar limpiamente el corte inferior */
+.hero__avatar_card {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: clamp(480px, 42vw, 470px);
+  aspect-ratio: 0 / 1;
+  border-radius: 26px;
+  overflow: hidden;
+  border: 1.5px solid rgba(80, 90, 112, 0.22);
+  background: linear-gradient(
+    170deg,
+    rgba(255, 255, 255, 0.75) 0%,
+    rgba(241, 245, 249, 0.5) 50%,
+    rgba(226, 232, 240, 0.65) 100%
+  );
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow:
+    0 24px 48px -12px rgba(15, 23, 42, 0.15),
+    0 4px 12px rgba(15, 23, 42, 0.05),
+    inset 0 1px 1px rgba(255, 255, 255, 0.9);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  transition:
+    transform 0.5s var(--ease-smooth),
+    box-shadow 0.5s var(--ease-smooth),
+    border-color 0.5s var(--ease-smooth);
+}
+
+/* Silueta recortada dentro del marco */
+.hero__avatar_silhouette {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center bottom;
+  display: block;
+  transform: scale(1.02);
+  transition: transform 0.5s var(--ease-smooth);
+  will-change: transform;
+}
+
+/* ── Hover: suave elevación tridimensional ── */
+.hero__avatar_container:hover .hero__avatar_card {
+  transform: translateY(-8px);
+  border-color: rgba(80, 90, 112, 0.38);
+  box-shadow:
+    0 32px 64px -16px rgba(15, 23, 42, 0.22),
+    0 8px 24px rgba(15, 23, 42, 0.08),
+    inset 0 1px 1px rgba(255, 255, 255, 0.95);
+}
+
+.hero__avatar_container:hover .hero__avatar_silhouette {
+  transform: scale(1.05);
+}
+
+.hero__avatar_container:hover .hero__avatar_backdrop {
+  transform: scale(1.08);
+  opacity: 1;
+}
+
+.hero__avatar_container:hover .hero__avatar_glow {
+  transform: rotate(-1deg) scale(1.04);
 }
 
 /* ── Scroll indicator ── */
@@ -219,6 +289,13 @@
 
 /* ── Responsive ── */
 @media (max-width: 900px) {
+  .hero__grid_wrapper {
+    perspective-origin: 50% 45%;
+  }
+  .hero__grid_plane {
+    transform: rotateX(73deg) rotateZ(10deg);
+    top: -8vh;
+  }
   .hero__container {
     grid-template-columns: 1fr;
     text-align: center;
@@ -228,6 +305,13 @@
   .hero__ctas { justify-content: center; }
   .hero__visual { order: -1; }
   .hero__eyebrow { justify-content: center; }
-  .hero__avatar_frame { width: 240px; height: 240px; }
-  .hero__avatar_badge { right: 0; }
+  .hero__avatar_container {
+    width: clamp(250px, 75vw, 340px);
+    margin: 0 auto;
+  }
+  .hero__avatar_badge {
+    right: 50%;
+    transform: translateX(50%);
+    bottom: -1rem;
+  }
 }

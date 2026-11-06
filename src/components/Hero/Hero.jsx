@@ -2,6 +2,7 @@ import { useRef, useEffect } from 'react';
 import gsap from 'gsap';
 import { FiArrowRight, FiMail } from 'react-icons/fi';
 import styles from './Hero.module.css';
+import avatarCutout from '../../assets/avatar-cutout.png';
 
 export default function Hero({ visible }) {
   const eyebrowRef    = useRef(null);
@@ -26,13 +27,27 @@ export default function Hero({ visible }) {
 
   return (
     <section id="hero" className={styles.hero}>
+      {/* ── Cuadrícula 3D en perspectiva aplanada (estática) ── */}
+      <div className={styles.hero__grid_wrapper} aria-hidden="true">
+        <div className={styles.hero__grid_glow} />
+        <div className={styles.hero__grid_plane}>
+          <svg className={styles.hero__grid_svg} width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <pattern id="hero-3d-grid-pattern" width="110" height="110" patternUnits="userSpaceOnUse">
+                {/* Líneas sutiles de la cuadrícula */}
+                <path d="M 0 55 L 110 55 M 55 0 L 55 110" fill="none" stroke="rgba(80, 90, 112, 0.12)" strokeWidth="0.85" />
+                {/* Cruces (+) sutiles en cada intersección */}
+                <path d="M 47 55 L 63 55 M 55 47 L 55 63" stroke="#505A70" strokeWidth="1.2" strokeOpacity="0.25" strokeLinecap="square" />
+              </pattern>
+            </defs>
+            <rect width="100%" height="100%" fill="url(#hero-3d-grid-pattern)" />
+          </svg>
+        </div>
+      </div>
+
       <div className={styles.hero__container}>
         {/* ── Columna izquierda: texto ── */}
         <div className={styles.hero__content}>
-          <p ref={eyebrowRef} className={styles.hero__eyebrow} style={{ opacity: 0 }}>
-            Portfolio 2025
-          </p>
-
           <h1 ref={titleRef} className={styles.hero__title}>
             <span className={styles['hero__title-line']}>
               <span className={`${styles['hero__title-word']} ${styles['hero__title-name']}`}>
@@ -71,13 +86,20 @@ export default function Hero({ visible }) {
           </div>
         </div>
 
-        {/* ── Columna derecha: visual ── */}
+        {/* ── Columna derecha: silueta enmarcada con borde redondeado y forma sutil detrás ── */}
         <div ref={visualRef} className={styles.hero__visual} style={{ opacity: 0, transform: 'translateX(40px)' }}>
-          <div className={styles.hero__avatar_frame}>
-            <div className={styles.hero__avatar_bg} />
-            <div className={styles.hero__avatar_initials}>JB</div>
-            <div className={styles.hero__avatar_badge}>
-              Disponible para proyectos
+          <div className={styles.hero__avatar_container}>
+            {/* Forma geométrica abstracta y sutil detrás (círculo difuminado con degradado suave en #505A70) */}
+            <div className={styles.hero__avatar_backdrop} aria-hidden="true" />
+            <div className={styles.hero__avatar_glow} aria-hidden="true" />
+
+            {/* Marco con borde y radio para cerrar limpiamente el corte inferior */}
+            <div className={styles.hero__avatar_card}>
+              <img
+                src={avatarCutout}
+                alt="Juan Betancor"
+                className={styles.hero__avatar_silhouette}
+              />
             </div>
           </div>
         </div>

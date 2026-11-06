@@ -48,7 +48,7 @@ export default function Navbar({ visible }) {
           className={styles.navbar__logo}
           onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
         >
-          JB<span>.</span>
+          <img src="jb_logo.svg" alt="logo Juan Betancor"/> 
         </div>
 
         {/* Links desktop */}

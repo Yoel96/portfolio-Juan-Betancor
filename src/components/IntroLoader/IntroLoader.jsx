@@ -1,25 +1,23 @@
 import { useRef, useLayoutEffect } from 'react';
 import gsap from 'gsap';
 import styles from './IntroLoader.module.css';
+import IntroBackground from './IntroBackground';
 
 /**
  * IntroLoader — Cortinilla de entrada animada con GSAP
  * Secuencia:
  * 1. "JUAN" entra desde -100vw
  * 2. "BETANCOR" entra desde 100vw (simultáneo)
- * 3. Fade-up de etiqueta "Desarrollador"
- * 4. Fade-down de etiqueta "Diseñador Gráfico"
- * 5. Línea decorativa se expande
- * 6. Pausa 0.9s
- * 7. Cortinilla sube (translateY -100%) con power4.inOut
+ * 3. Fade-in suave de "Desarrollador" y "Diseñador Gráfico"
+ * 4. Pausa de lectura
+ * 5. Cortinilla sube (translateY -100%) con power4.inOut
  */
 export default function IntroLoader({ onComplete }) {
-  const containerRef  = useRef(null);
-  const juanRef       = useRef(null);
-  const betancorRef   = useRef(null);
-  const devLabelRef   = useRef(null);
+  const containerRef   = useRef(null);
+  const juanRef        = useRef(null);
+  const betancorRef    = useRef(null);
+  const devLabelRef    = useRef(null);
   const designLabelRef = useRef(null);
-  const lineRef       = useRef(null);
 
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
@@ -34,7 +32,6 @@ export default function IntroLoader({ onComplete }) {
       // Asegurar estado inicial
       gsap.set([juanRef.current, betancorRef.current], { opacity: 1 });
       gsap.set([devLabelRef.current, designLabelRef.current], { opacity: 0 });
-      gsap.set(lineRef.current, { width: '0%' });
 
       tl
         // 1 & 2 — Nombres entran simultáneamente desde lados opuestos
@@ -50,38 +47,29 @@ export default function IntroLoader({ onComplete }) {
           '<' // simultáneo
         )
 
-        // 3 — Fade-up etiqueta "Desarrollador"
+        // 3 — Fade-in sutil de las profesiones
         .fromTo(
           devLabelRef.current,
-          { y: 16, opacity: 0 },
-          { y: 0, opacity: 1, duration: 0.55, ease: 'power3.out' },
-          '-=0.5'
+          { y: 10, opacity: 0 },
+          { y: 0, opacity: 1, duration: 0.8, ease: 'power3.out' },
+          '-=0.45'
         )
-
-        // 4 — Fade-down etiqueta "Diseñador Gráfico"
         .fromTo(
           designLabelRef.current,
-          { y: -16, opacity: 0 },
-          { y: 0, opacity: 1, duration: 0.55, ease: 'power3.out' },
+          { y: -10, opacity: 0 },
+          { y: 0, opacity: 1, duration: 0.8, ease: 'power3.out' },
           '<'
         )
 
-        // 5 — Línea decorativa
-        .to(
-          lineRef.current,
-          { width: '100%', duration: 0.6, ease: 'power2.inOut' },
-          '-=0.3'
-        )
+        // 4 — Pausa para apreciar el logotipo y juego de colores
+        .to({}, { duration: 1.2 })
 
-        // 6 — Pausa para leer el nombre (delay, no addPause que bloquea onComplete)
-        .to({}, { duration: 0.9 })
-
-        // 7 — Cortinilla sube para revelar la web
-        .to(containerRef.current, {
+        // 5 — Cortinilla sube para revelar la web
+         .to(containerRef.current, {
           yPercent: -100,
-          duration: 1.2,
+          duration: 1.5,
           ease: 'power4.inOut',
-        });
+        }); 
     }, containerRef);
 
     return () => ctx.revert();
@@ -89,11 +77,14 @@ export default function IntroLoader({ onComplete }) {
 
   return (
     <div ref={containerRef} className={styles.intro} aria-hidden="true">
+      {/* Fondo vectorial animado sutil (ondas y cuadrícula de puntos) */}
+      <IntroBackground />
+
       <div className={styles.intro__inner}>
-        {/* Etiqueta superior */}
+        {/* Etiqueta superior — Desarrollador */}
         <span
           ref={devLabelRef}
-          className={`${styles.intro__label} ${styles['intro__label--top']}`}
+          className={`${styles.intro__label} ${styles['intro__label--dev']}`}
         >
           Desarrollador
         </span>
@@ -108,13 +99,10 @@ export default function IntroLoader({ onComplete }) {
           </span>
         </div>
 
-        {/* Línea decorativa */}
-        <div ref={lineRef} className={styles.intro__line} />
-
-        {/* Etiqueta inferior */}
+        {/* Etiqueta inferior — Diseñador Gráfico */}
         <span
           ref={designLabelRef}
-          className={`${styles.intro__label} ${styles['intro__label--bottom']}`}
+          className={`${styles.intro__label} ${styles['intro__label--design']}`}
         >
           Diseñador Gráfico
         </span>

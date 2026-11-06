@@ -2,7 +2,7 @@
   position: fixed;
   inset: 0;
   z-index: 9999;
-  background: #F8FAFC;
+  background: var(--color-white, #FFFFFF);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -11,47 +11,53 @@
 
 .intro__inner {
   position: relative;
+  z-index: 1;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 0;
+  width: -moz-fit-content;
+  width: fit-content;
+  max-width: 90vw;
   user-select: none;
 }
 
-/* ── Etiquetas flotantes ── */
+/* ── Etiquetas de profesión ── */
 .intro__label {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: clamp(0.65rem, 1.2vw, 0.85rem);
-  font-weight: 500;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: #505A70;
+  font-family: var(--font-body, 'Plus Jakarta Sans', sans-serif);
+  font-size: clamp(0.95rem, 1.7vw, 1.45rem);
+  letter-spacing: -0.015em;
   opacity: 0;
   pointer-events: none;
+  white-space: nowrap;
+  line-height: 1.2;
 }
 
-.intro__label--top {
+.intro__label--dev {
   align-self: flex-start;
-  margin-bottom: 0.4rem;
+  color: var(--color-secondary, #505A70);
+  font-weight: 700;
+ /* margin-bottom: clamp(0.2rem, 0.5vw, 0.45rem);*/
+  padding-left: 1em; /* Ligero ajuste óptico con el trazo de la 'J' */
 }
 
-.intro__label--bottom {
+.intro__label--design {
   align-self: flex-end;
-  margin-top: 0.4rem;
+  color: var(--color-primary, #0F172A);
+  font-weight: 700;
+  margin-top: clamp(0.2rem, 0.5vw, 0.45rem);
 }
 
-/* ── Nombres ── */
+/* ── Bloque de Nombres ── */
 .intro__names {
   display: flex;
   flex-direction: column;
-  overflow: hidden;
 }
 
 .intro__name {
-  font-family: 'Syne', sans-serif;
+  font-family: var(--font-display, 'Plus Jakarta Sans', sans-serif);
   font-weight: 800;
-  font-size: clamp(4rem, 13vw, 11rem);
-  line-height: 0.9;
+  font-size: clamp(3.75rem, 10.5vw, 8.5rem);
+  line-height: 0.88;
   letter-spacing: -0.04em;
   white-space: nowrap;
   display: block;
@@ -59,22 +65,11 @@
 }
 
 .intro__name--juan {
-  color: #0F172A;
+  color: var(--color-primary, #0F172A);
 }
 
 .intro__name--betancor {
-  color: #505A70;
-  /* Escalonado hacia la derecha */
-  padding-left: clamp(1.5rem, 4vw, 4rem);
-}
-
-/* ── Línea decorativa ── */
-.intro__line {
-  position: absolute;
-  bottom: -1.2rem;
-  left: 0;
-  width: 0%;
-  height: 2px;
-  background: linear-gradient(90deg, #38BDF8, #818CF8);
-  border-radius: 2px;
+  color: var(--color-secondary, #505A70);
+  /* Escalonado hacia la derecha bajo la 'A' de JUAN */
+  padding-left: 0.88em;
 }

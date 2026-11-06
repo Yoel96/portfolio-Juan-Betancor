@@ -35,9 +35,9 @@ export default function App() {
 
         <main>
           <Hero    visible={introComplete} />
+          <Projects />
           <TechStack />
           <About />
-          <Projects />
           <Contact />
         </main>
 
