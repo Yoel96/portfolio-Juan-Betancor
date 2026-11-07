@@ -15,7 +15,7 @@ export default function Footer() {
 
         <nav className={styles.footer__links} aria-label="Redes sociales">
           <a
-            href="https://github.com"
+            href="https://github.com/Yoel96/"
             target="_blank"
             rel="noopener noreferrer"
             className={styles.footer__link}
@@ -24,7 +24,7 @@ export default function Footer() {
             <FiGithub /> GitHub
           </a>
           <a
-            href="https://linkedin.com"
+            href="https://www.linkedin.com/in/juan-betancor-martin/"
             target="_blank"
             rel="noopener noreferrer"
             className={styles.footer__link}

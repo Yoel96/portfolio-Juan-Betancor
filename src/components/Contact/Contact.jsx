@@ -8,10 +8,10 @@ import styles from './Contact.module.css';
 gsap.registerPlugin(ScrollTrigger);
 
 const SOCIAL_LINKS = [
-  { icon: <FiMail />,     label: 'juanbetancor@email.com', href: 'mailto:juanbetancor@email.com' },
-  { icon: <FiGithub />,   label: 'github.com/juanbetancor', href: 'https://github.com' },
-  { icon: <FiLinkedin />, label: 'linkedin.com/in/juanbetancor', href: 'https://linkedin.com' },
-  { icon: <FiGlobe />,    label: 'juanbetancor.com', href: '#' },
+  { icon: <FiMail />,     label: 'juyobema@gmail.com', href: 'mailto:juyobema@gmail.com' },
+  { icon: <FiGithub />,   label: 'github.com/Yoel96', href: 'https://github.com/Yoel96' },
+  { icon: <FiLinkedin />, label: 'linkedin.com/in/juan-betancor-martin', href: 'https://www.linkedin.com/in/juan-betancor-martin/' },
+  
 ];
 
 export default function Contact() {

@@ -34,7 +34,7 @@
 }
 
 .navbar__logo img {
-  width: 1.5em;
+  width: 1.7em;
 }
 
 /* ── Nav links ── */
@@ -78,6 +78,9 @@
 .navbar__cta {
   padding: 0.5rem 1.25rem;
   font-size: 0.875rem;
+  border: none  ;
+  background: none;
+  font-size: 16px;
 }
 
 /* ── Hamburger (móvil) ── */
