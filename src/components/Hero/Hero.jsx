@@ -3,6 +3,7 @@ import gsap from 'gsap';
 import { FiArrowRight, FiMail } from 'react-icons/fi';
 import styles from './Hero.module.css';
 import avatarCutout from '../../assets/avatar-cutout.png';
+import FloatingTech from './FloatingTech';
 
 export default function Hero({ visible }) {
   const eyebrowRef    = useRef(null);
@@ -51,29 +52,25 @@ export default function Hero({ visible }) {
           <h1 ref={titleRef} className={styles.hero__title}>
             <span className={styles['hero__title-line']}>
               <span className={`${styles['hero__title-word']} ${styles['hero__title-name']}`}>
-                Diseño
+                Desarrollador
               </span>
               {' '}
               <span className={`${styles['hero__title-word']} ${styles['hero__title-accent']}`}>
-                &amp;
+                con alma de
               </span>
             </span>
+ 
             <span className={styles['hero__title-line']}>
               <span className={`${styles['hero__title-word']} ${styles['hero__title-role']}`}>
-                Desarrollo
-              </span>
-            </span>
-            <span className={styles['hero__title-line']}>
-              <span className={`${styles['hero__title-word']} ${styles['hero__title-name']}`}>
-                Web.
+                diseñador.
               </span>
             </span>
           </h1>
 
           <p ref={descRef} className={styles.hero__description} style={{ opacity: 0 }}>
-            Soy <strong>Juan Betancor</strong>, desarrollador frontend y diseñador gráfico.
-            Combino estudios superiores en diseño con formación técnica en DAW para crear
-            experiencias digitales que conectan estética y funcionalidad.
+            Soy <strong>Juan Betancor</strong>, desarrollador y diseñador gráfico.
+            Combino formación técnica en diferentes tecnologías de informática y conocimientos de diseño para crear
+            experiencias digitales estéticas y funcionales.
           </p>
 
           <div ref={ctasRef} className={styles.hero__ctas} style={{ opacity: 0 }}>
@@ -93,7 +90,7 @@ export default function Hero({ visible }) {
             <div className={styles.hero__avatar_backdrop} aria-hidden="true" />
             <div className={styles.hero__avatar_glow} aria-hidden="true" />
 
-            {/* Marco con borde y radio para cerrar limpiamente el corte inferior */}
+
             <div className={styles.hero__avatar_card}>
               <img
                 src={avatarCutout}
@@ -101,6 +98,9 @@ export default function Hero({ visible }) {
                 className={styles.hero__avatar_silhouette}
               />
             </div>
+
+            {/* Logos de tecnologías flotando de forma orgánica alrededor del avatar */}
+            <FloatingTech visible={visible} />
           </div>
         </div>
       </div>

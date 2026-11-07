@@ -6,7 +6,7 @@ export default defineConfig({
   plugins: [react()],
   server: {
     allowedHosts: [
-      'seminars-drunk-eyed-number.trycloudflare.com'
+      'sell-asthma-zoning-databases.trycloudflare.com'
     ]
   }
 })

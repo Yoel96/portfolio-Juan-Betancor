@@ -38,6 +38,7 @@ export default function App() {
           <Projects />
           <TechStack />
           <About />
+
           <Contact />
         </main>
 

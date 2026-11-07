@@ -6,12 +6,13 @@ import styles from './About.module.css';
 gsap.registerPlugin(ScrollTrigger);
 
 const TAGS = [
-  '🎓 TSDS — Diseño Gráfico',
-  '💻 DAW — Desarrollo Web',
+  '🎓 Diseño Gráfico',
+  '💻 Desarrollo Web',
   '🎨 UX / UI',
   '🖨️ Identidad de Marca',
   '📱 Diseño Responsive',
   '🌐 WordPress',
+  
 ];
 
 export default function About() {
@@ -51,14 +52,14 @@ export default function About() {
           <div ref={visualRef} className={styles.about__visual}>
             <div className={styles.about__card}>
               <div className={styles.about__card_initials}>
-                <span>J</span><strong>B</strong>
+                <img src="jb_logo_blanco.svg"  />
               </div>
               <div className={styles.about__card_role}>
                 Desarrollador · Diseñador · Creativo
               </div>
               <div className={styles.about__stats}>
                 <div className={styles.about__stat}>
-                  <div className={styles.about__stat_num}>3<span>+</span></div>
+                  <div className={styles.about__stat_num}>4<span>+</span></div>
                   <div className={styles.about__stat_label}>Años de experiencia</div>
                 </div>
                 <div className={styles.about__stat}>
@@ -71,7 +72,7 @@ export default function About() {
                 </div>
                 <div className={styles.about__stat}>
                   <div className={styles.about__stat_num}>∞</div>
-                  <div className={styles.about__stat_label}>Café consumido</div>
+                  <div className={styles.about__stat_label}>Ambición</div>
                 </div>
               </div>
             </div>
@@ -80,7 +81,7 @@ export default function About() {
 
           {/* ── Columna de texto ── */}
           <div ref={contentRef} className={styles.about__content}>
-            <p className="section-label">Sobre mí</p>
+             
             <h2 className={styles.about__title}>
               Donde el diseño <em>encuentra</em> la tecnología
             </h2>

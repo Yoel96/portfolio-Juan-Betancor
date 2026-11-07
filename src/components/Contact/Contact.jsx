@@ -66,7 +66,7 @@ export default function Contact() {
               ¿Tienes un <em>proyecto</em> en mente?
             </h2>
             <p className={styles.contact__text} data-animate>
-              Estoy disponible para proyectos freelance, colaboraciones y posiciones a tiempo completo.
+              Estoy disponible para proyectos, colaboraciones y posiciones a tiempo completo.
               No dudes en escribirme y te responderé en menos de 24 horas.
             </p>
 

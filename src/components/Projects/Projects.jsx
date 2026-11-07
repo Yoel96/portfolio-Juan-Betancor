@@ -1,72 +1,90 @@
 import { useRef, useEffect } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { SiGithub, SiBehance } from 'react-icons/si';
 import ProjectCard from './ProjectCard';
 import styles from './Projects.module.css';
 
 gsap.registerPlugin(ScrollTrigger);
 
+// Puedes cambiar 'image' por la ruta de tus imágenes locales (ej. '/proyectos/mi-foto.jpg' o importándola de assets)
 const PROJECTS = [
   {
-    title: 'E-commerce con WordPress & WooCommerce',
+    title: 'E-commerce y E-learning con WordPress & WooCommerce',
     description:
-      'Tienda online completa para marca de moda local. Diseño de marca, identidad visual, integración de pasarela de pago y optimización SEO técnico.',
-    tags: ['WordPress', 'WooCommerce', 'CSS'],
+      'Academia online completa para Link Soluciones. Desarrollo de la estructura, pasarela de pago completa y SEO técnico.',
+    tags: ['WordPress', 'WooCommerce', 'Learndash',  'PHP'],
     type: 'Web · E-commerce',
-    gradient: 'linear-gradient(135deg, #0F172A 0%, #1e3a5f 50%, #0ea5e9 100%)',
+    image:
+      'public/link-Academy.png',
+    link: 'https://www.behance.net/gallery/175387027/e-learning-Web-Link-Academy',
+  },
+  {
+    title: 'Desarrollo de videojuegos',
+    description:
+      'Desarrollo, modelado 3D y animaciones para un videojuego 3D',
+    tags: ['Unity', 'Blender', 'C#'],
+    type: 'Videojuegos',
+    image:
+      'stain_run.png',
     link: '#',
   },
   {
-    title: 'Dashboard SPA con React',
+    title: 'Rediseño de marca',
     description:
-      'Aplicación de panel de administración con gráficas en tiempo real, gestión de usuarios, autenticación JWT y diseño dark mode.',
-    tags: ['React', 'JavaScript', 'CSS3'],
-    type: 'Web · App',
-    gradient: 'linear-gradient(135deg, #1e1b4b 0%, #3730a3 50%, #818CF8 100%)',
-    link: '#',
-  },
-  {
-    title: 'Branding & Identidad Visual',
-    description:
-      'Proyecto de identidad completa para startup tecnológica: logotipo, sistema tipográfico, paleta cromática, papelería y guía de marca.',
-    tags: ['Figma', 'Adobe CC', 'Branding'],
+      'Rediseño de marca para los Premios a la Excelencia en RRHH Canarias.',
+    tags: [  'Adobe CC', 'Branding'],
     type: 'Diseño · Branding',
-    gradient: 'linear-gradient(135deg, #064e3b 0%, #059669 60%, #34d399 100%)',
-    link: '#',
+    image:
+      'premios excelencia rrhh canarias.png',
+    link: 'https://www.premiosrrhhcanarias.com/',
   },
   {
-    title: 'Landing Page de Alta Conversión',
+    title: 'Automatización de contenido',
     description:
-      'Landing page para campaña de marketing digital con animaciones GSAP, A/B testing y optimización de velocidad (100 en Lighthouse).',
-    tags: ['HTML5', 'GSAP', 'PHP'],
-    type: 'Web · Marketing',
-    gradient: 'linear-gradient(135deg, #7c2d12 0%, #c2410c 50%, #fb923c 100%)',
-    link: '#',
+      'Automatización para subir contenido multimedia a Instagram a partir de servicios de Google.',
+    tags: ['Javascript', 'Appscript'],
+    type: 'Automatizaciones',
+    image:
+      'https://images.unsplash.com/photo-1783115259399-3a5a3e0e4592?q=80&w=1374&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D',
+    link: 'https://script.google.com/macros/s/AKfycbxRYjKto23xyLhWjVItc7qy4tiAppql5M0JvQq_sckj__WPU1W7xp99h2Jt1orh3dMAow/exec',
   },
   {
-    title: 'Plugin WordPress Personalizado',
+    title: 'Aplicación web de contactos',
     description:
-      'Plugin custom para gestión de reservas online con calendario interactivo, panel de administración y notificaciones por email automatizadas.',
-    tags: ['PHP', 'WordPress', 'JavaScript'],
-    type: 'Web · Plugin',
-    gradient: 'linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #505A70 100%)',
-    link: '#',
+      'Programación de backend y frontend para web de contactos.',
+    tags: ['.NET', 'React.js'],
+    type: 'Web · API',
+    image:
+      'https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=1200&q=80',
+    link: 'https://github.com/Yoel96/React-Contact-Book-Front-End',
   },
   {
-    title: 'App de Portafolio 3D',
+    title: 'Maquetación web',
     description:
-      'Exploración creativa de un portafolio con Three.js y WebGL. Escenario 3D interactivo con partículas, shaders personalizados y scroll experience inmersiva.',
-    tags: ['React', 'Three.js', 'GSAP'],
-    type: 'Web · Creativo',
-    gradient: 'linear-gradient(135deg, #0f172a 0%, #505A70 50%, #38BDF8 100%)',
-    link: '#',
+      'Maquetación del rediseño de la página web de Celia Rubio, a partir de un diseño entregado.',
+    tags: ['Wordpress', 'Elementor'],
+    type: 'Web',
+    image:
+      'landing_Celia_Rubio.png',
+    link: 'https://celiarubio.com/',
   },
+];
+
+const BENTO_CLASSES = [
+  'card--wide',
+  'card--tall',
+  'card--normal',
+  'card--normal',
+  'card--normal',
+  'card--wide',
 ];
 
 export default function Projects() {
   const sectionRef = useRef(null);
-  const headerRef  = useRef(null);
-  const gridRef    = useRef(null);
+  const headerRef = useRef(null);
+  const gridRef = useRef(null);
+  const footerRef = useRef(null);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -74,22 +92,39 @@ export default function Projects() {
         headerRef.current,
         { y: 40, opacity: 0 },
         {
-          y: 0, opacity: 1, duration: 0.8,
+          y: 0,
+          opacity: 1,
+          duration: 0.8,
           scrollTrigger: { trigger: headerRef.current, start: 'top 80%' },
         }
       );
 
       gsap.fromTo(
         Array.from(gridRef.current?.children || []),
-        { y: 60, opacity: 0 },
+        { y: 50, opacity: 0 },
         {
-          y: 0, opacity: 1,
+          y: 0,
+          opacity: 1,
           stagger: 0.1,
           duration: 0.7,
           ease: 'power3.out',
           scrollTrigger: {
             trigger: gridRef.current,
             start: 'top 80%',
+          },
+        }
+      );
+
+      gsap.fromTo(
+        footerRef.current,
+        { y: 30, opacity: 0 },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 0.6,
+          scrollTrigger: {
+            trigger: footerRef.current,
+            start: 'top 90%',
           },
         }
       );
@@ -103,8 +138,7 @@ export default function Projects() {
       <div className="container">
         <div ref={headerRef} className={styles.projects__header}>
           <div>
-            <p className="section-label">Proyectos</p>
-            <h2 className={styles.projects__title}>Trabajo seleccionado</h2>
+            <h2 className={styles.projects__title}>Proyectos destacados</h2>
           </div>
           <a href="#contact" className="btn btn--outline" id="projects-cta-all">
             Trabajemos juntos
@@ -113,8 +147,42 @@ export default function Projects() {
 
         <div ref={gridRef} className={styles.projects__grid}>
           {PROJECTS.map((project, i) => (
-            <ProjectCard key={project.title} project={project} index={i} />
+            <ProjectCard
+              key={project.title}
+              project={project}
+              index={i}
+              bentoClass={styles[BENTO_CLASSES[i]]}
+            />
           ))}
+        </div>
+
+        {/* ── Enlaces a GitHub y Behance debajo del grid a la derecha ── */}
+        <div ref={footerRef} className={styles.projects__footer}>
+          <div className={styles.projects__socialLinks}>
+            <span className={styles.projects__socialHint}>Ver más proyectos:</span>
+            <a
+              href="https://github.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={styles.projects__socialIcon}
+              aria-label="Ver proyectos en GitHub"
+              title="GitHub"
+              id="projects-link-github"
+            >
+              <SiGithub />
+            </a>
+            <a
+              href="https://behance.net"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={styles.projects__socialIcon}
+              aria-label="Ver proyectos en Behance"
+              title="Behance"
+              id="projects-link-behance"
+            >
+              <SiBehance />
+            </a>
+          </div>
         </div>
       </div>
     </section>
