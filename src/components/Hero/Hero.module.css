@@ -116,7 +116,7 @@
   font-size: 1.1rem;
   line-height: 1.75;
   color: var(--color-secondary);
-  margin-bottom: 2.5rem;
+  margin-bottom: 1.7rem;
   max-width: 480px;
   opacity: 0;
 }
@@ -143,8 +143,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: clamp(380px, 42vw, 480px);
-  cursor: pointer;
+  width: -moz-fit-content;
+  width: fit-content;
 }
 
 /* Forma geométrica abstracta y sutil detrás (círculo con degradado muy suave en #505A70) */
@@ -299,6 +299,7 @@
   .hero__container {
     grid-template-columns: 1fr;
     text-align: center;
+    gap: 3em; 
   }
   .hero__content { max-width: 100%; }
   .hero__description { max-width: 100%; }
@@ -306,7 +307,9 @@
   .hero__visual { order: -1; }
   .hero__eyebrow { justify-content: center; }
   .hero__avatar_container {
-    width: clamp(250px, 75vw, 340px);
+    width: -moz-fit-content;
+    width: fit-content;
+    flex-direction: column;
     margin: 0 auto;
   }
   .hero__avatar_badge {
@@ -314,4 +317,6 @@
     transform: translateX(50%);
     bottom: -1rem;
   }
+
+  .hero__scroll{display: none;}
 }

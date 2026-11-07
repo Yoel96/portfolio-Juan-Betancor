@@ -31,8 +31,8 @@
   color: var(--color-white);
 }
 
-.footer__brand span {
-  color: var(--color-accent);
+.footer__brand img {
+  width:1.4em;
 }
 
 .footer__copy {

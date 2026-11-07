@@ -69,7 +69,7 @@ export default function IntroLoader({ onComplete }) {
           yPercent: -100,
           duration: 1.5,
           ease: 'power4.inOut',
-        }); 
+        });   
     }, containerRef);
 
     return () => ctx.revert();

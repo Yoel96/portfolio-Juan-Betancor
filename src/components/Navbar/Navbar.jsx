@@ -4,9 +4,10 @@ import styles from './Navbar.module.css';
 
 const NAV_LINKS = [
   { label: 'Inicio',      href: '#hero' },
+  { label: 'Proyectos',  href: '#projects' },
   { label: 'Habilidades', href: '#tech' },
   { label: 'Sobre mí',   href: '#about' },
-  { label: 'Proyectos',  href: '#projects' },
+
 ];
 
 export default function Navbar({ visible }) {
@@ -102,7 +103,7 @@ export default function Navbar({ visible }) {
           </button>
         ))}
         <button
-          className="btn btn--primary"
+          className={`btn btn--primary  ${styles.navbar__cta}`}
           onClick={() => handleNav('#contact')}
         >
           Contacto

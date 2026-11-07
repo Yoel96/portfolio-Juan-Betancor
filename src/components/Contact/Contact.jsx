@@ -1,23 +1,24 @@
 import { useRef, useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import gsap from 'gsap';
+import emailjs from '@emailjs/browser';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { FiSend, FiGithub, FiLinkedin, FiMail, FiGlobe } from 'react-icons/fi';
+import { FiSend, FiGithub, FiLinkedin, FiMail } from 'react-icons/fi';
 import styles from './Contact.module.css';
 
 gsap.registerPlugin(ScrollTrigger);
 
 const SOCIAL_LINKS = [
-  { icon: <FiMail />,     label: 'juanbetancor@email.com', href: 'mailto:juanbetancor@email.com' },
-  { icon: <FiGithub />,   label: 'github.com/juanbetancor', href: 'https://github.com' },
-  { icon: <FiLinkedin />, label: 'linkedin.com/in/juanbetancor', href: 'https://linkedin.com' },
-  { icon: <FiGlobe />,    label: 'juanbetancor.com', href: '#' },
+  { icon: <FiMail />,     label: 'juyobema@gmail.com', href: 'mailto:juyobema@gmail.com' },
+  { icon: <FiGithub />,   label: 'github.com/Yoel96', href: 'https://github.com/Yoel96' },
+  { icon: <FiLinkedin />, label: 'linkedin.com/in/juan-betancor-martin', href: 'https://www.linkedin.com/in/juan-betancor-martin/' },
 ];
 
 export default function Contact() {
   const sectionRef = useRef(null);
   const [submitted, setSubmitted] = useState(false);
-  const [sending,   setSending]   = useState(false);
+  const [sending, setSending] = useState(false);
+  const [errorMessage, setErrorMessage] = useState(null);
 
   const {
     register,
@@ -32,7 +33,8 @@ export default function Contact() {
         sectionRef.current.querySelectorAll('[data-animate]'),
         { y: 50, opacity: 0 },
         {
-          y: 0, opacity: 1,
+          y: 0,
+          opacity: 1,
           stagger: 0.12,
           duration: 0.8,
           ease: 'power3.out',
@@ -46,12 +48,40 @@ export default function Contact() {
 
   const onSubmit = async (data) => {
     setSending(true);
-    // Simulación de envío — reemplaza con emailjs.send() cuando tengas las credenciales
-    await new Promise(r => setTimeout(r, 1500));
-    console.log('Form data:', data);
-    setSending(false);
-    setSubmitted(true);
-    reset();
+    setErrorMessage(null);
+
+    const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+    const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+    const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+
+    if (!serviceId || !templateId || !publicKey) {
+      console.warn(
+        'EmailJS: Faltan variables de entorno en el archivo .env (VITE_EMAILJS_SERVICE_ID, VITE_EMAILJS_TEMPLATE_ID, VITE_EMAILJS_PUBLIC_KEY).'
+      );
+    }
+
+    try {
+      const templateParams = {
+        name: data.name,
+        from_name: data.name,
+        email: data.email,
+        from_email: data.email,
+        reply_to: data.email,
+        subject: data.subject || 'Nuevo mensaje desde el portafolio',
+        message: data.message,
+      };
+
+      await emailjs.send(serviceId, templateId, templateParams, publicKey);
+      setSubmitted(true);
+      reset();
+    } catch (error) {
+      console.error('Error al enviar formulario con EmailJS:', error);
+      setErrorMessage(
+        'Hubo un problema al enviar el mensaje. Por favor, inténtalo de nuevo o escríbeme directamente a juyobema@gmail.com'
+      );
+    } finally {
+      setSending(false);
+    }
   };
 
   return (
@@ -61,12 +91,12 @@ export default function Contact() {
 
           {/* ── Columna izquierda: info ── */}
           <div className={styles.contact__info}>
-            <p className="section-label" data-animate>Contacto</p>
+             
             <h2 className={styles.contact__title} data-animate>
               ¿Tienes un <em>proyecto</em> en mente?
             </h2>
             <p className={styles.contact__text} data-animate>
-              Estoy disponible para proyectos freelance, colaboraciones y posiciones a tiempo completo.
+              Estoy disponible para proyectos, colaboraciones y posiciones a tiempo completo.
               No dudes en escribirme y te responderé en menos de 24 horas.
             </p>
 
@@ -95,9 +125,22 @@ export default function Contact() {
                 <p className={styles.form__success_text}>
                   Gracias por escribir. Te responderé lo antes posible.
                 </p>
+                <button
+                  type="button"
+                  onClick={() => setSubmitted(false)}
+                  className={styles.form__reset_btn}
+                >
+                  Enviar otro mensaje
+                </button>
               </div>
             ) : (
               <form onSubmit={handleSubmit(onSubmit)} noValidate>
+                {errorMessage && (
+                  <div className={styles.form__alert_error} role="alert">
+                    {errorMessage}
+                  </div>
+                )}
+
                 <div className={styles.form__group}>
                   <label className={styles.form__label} htmlFor="contact-name">Nombre</label>
                   <input
