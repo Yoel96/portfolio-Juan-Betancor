@@ -6,7 +6,7 @@ export default defineConfig({
   plugins: [react()],
   server: {
     allowedHosts: [
-      'sell-asthma-zoning-databases.trycloudflare.com'
+      'ext-understood-buried-gained.trycloudflare.com'
     ]
   }
 })

@@ -1,6 +1,6 @@
 import { useRef, useEffect } from 'react';
 import gsap from 'gsap';
-import { FiArrowRight, FiMail } from 'react-icons/fi';
+import { FiArrowDown, FiMail } from 'react-icons/fi';
 import styles from './Hero.module.css';
 import avatarCutout from '../../assets/avatar-cutout.png';
 import FloatingTech from './FloatingTech';
@@ -75,7 +75,7 @@ export default function Hero({ visible }) {
 
           <div ref={ctasRef} className={styles.hero__ctas} style={{ opacity: 0 }}>
             <a href="#projects" className="btn btn--primary" id="hero-cta-projects">
-              Ver proyectos <FiArrowRight />
+              Ver proyectos  
             </a>
             <a href="#contact" className="btn btn--outline" id="hero-cta-contact">
               <FiMail /> Contacto

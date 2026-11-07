@@ -299,6 +299,7 @@
   .hero__container {
     grid-template-columns: 1fr;
     text-align: center;
+    gap: 3em; 
   }
   .hero__content { max-width: 100%; }
   .hero__description { max-width: 100%; }
@@ -316,4 +317,6 @@
     transform: translateX(50%);
     bottom: -1rem;
   }
+
+  .hero__scroll{display: none;}
 }

@@ -2,7 +2,7 @@
   position: fixed;
   inset: 0;
   z-index: 9999;
-  background: var(--color-white, #FFFFFF);
+  background: var(--color-white, #ffffff);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -21,7 +21,7 @@
   user-select: none;
 }
 
-/* ── Etiquetas de profesión ── */
+/* ── Etiquetas de profesión (Desktop) ── */
 .intro__label {
   font-family: var(--font-body, 'Plus Jakarta Sans', sans-serif);
   font-size: clamp(0.95rem, 1.7vw, 1.45rem);
@@ -34,20 +34,20 @@
 
 .intro__label--dev {
   align-self: flex-start;
-  color: var(--color-secondary, #505A70);
+  color: var(--color-secondary, #505a70);
   font-weight: 700;
- /* margin-bottom: clamp(0.2rem, 0.5vw, 0.45rem);*/
-  padding-left: 1em; /* Ligero ajuste óptico con el trazo de la 'J' */
+  padding-left: 1em; /* Ajuste óptico en desktop con el trazo de la 'J' */
+  margin-bottom: 0.25rem;
 }
 
 .intro__label--design {
   align-self: flex-end;
-  color: var(--color-primary, #0F172A);
+  color: var(--color-primary, #0f172a);
   font-weight: 700;
   margin-top: clamp(0.2rem, 0.5vw, 0.45rem);
 }
 
-/* ── Bloque de Nombres ── */
+/* ── Bloque de Nombres (Desktop) ── */
 .intro__names {
   display: flex;
   flex-direction: column;
@@ -65,11 +65,61 @@
 }
 
 .intro__name--juan {
-  color: var(--color-primary, #0F172A);
+  color: var(--color-primary, #0f172a);
 }
 
 .intro__name--betancor {
-  color: var(--color-secondary, #505A70);
-  /* Escalonado hacia la derecha bajo la 'A' de JUAN */
+  color: var(--color-secondary, #505a70);
+  /* Escalonado hacia la derecha bajo la 'A' de JUAN en pantallas grandes */
   padding-left: 0.88em;
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   VERSIÓN MÓVIL (<= 768px)
+   Modifica fácilmente los valores aquí abajo si deseas ajustar:
+   ══════════════════════════════════════════════════════════════════ */
+@media (max-width: 768px) {
+  .intro__inner {
+    max-width: 90vw;
+    align-items: flex-start;
+  }
+
+  /* 1. Tamaño y alineación de JUAN y BETANCOR */
+  .intro__names {
+    align-items: flex-start;
+  }
+
+  .intro__name {
+    font-size: clamp(3rem, 14vw, 5.2rem);
+    line-height: 0.9;
+    letter-spacing: -0.035em;
+  }
+
+  .intro__name--juan {
+    padding-left: 0;
+  }
+
+ 
+  .intro__name--betancor {
+    padding-left: 0; 
+  }
+
+  /* 2. Tamaño de las etiquetas para móvil */
+  .intro__label {
+    font-size: clamp(0.9rem, 3.8vw, 1.2rem);
+  }
+
+  /* 3. Etiqueta superior: Desarrollador */
+  .intro__label--dev {
+    align-self: flex-start;
+    padding-left: 0.6em; 
+    margin-bottom: 0rem;  
+  }
+
+  /* 4. Etiqueta inferior: Diseñador Gráfico */
+  .intro__label--design {
+    align-self: flex-end;
+    padding-right: 0em;  
+    margin-top: 0rem; 
+  }
 }

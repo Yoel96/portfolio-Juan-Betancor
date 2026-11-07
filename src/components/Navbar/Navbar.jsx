@@ -103,7 +103,7 @@ export default function Navbar({ visible }) {
           </button>
         ))}
         <button
-          className="btn btn--primary"
+          className={`btn btn--primary  ${styles.navbar__cta}`}
           onClick={() => handleNav('#contact')}
         >
           Contacto

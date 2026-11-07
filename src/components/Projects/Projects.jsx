@@ -27,7 +27,7 @@ const PROJECTS = [
     type: 'Videojuegos',
     image:
       'stain_run.png',
-    link: '#',
+    link: 'https://youtu.be/j6lJZOrlRbs',
   },
   {
     title: 'Rediseño de marca',
@@ -161,7 +161,7 @@ export default function Projects() {
           <div className={styles.projects__socialLinks}>
             <span className={styles.projects__socialHint}>Ver más proyectos:</span>
             <a
-              href="https://github.com"
+              href="https://github.com/Yoel96"
               target="_blank"
               rel="noopener noreferrer"
               className={styles.projects__socialIcon}
@@ -172,7 +172,7 @@ export default function Projects() {
               <SiGithub />
             </a>
             <a
-              href="https://behance.net"
+              href="https://www.behance.net/yoelbetancr"
               target="_blank"
               rel="noopener noreferrer"
               className={styles.projects__socialIcon}

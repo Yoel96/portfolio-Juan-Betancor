@@ -7,7 +7,7 @@ export default function Footer() {
   return (
     <footer className={styles.footer}>
       <div className={`container ${styles.footer__inner}`}>
-        <div className={styles.footer__brand}>JB<span>.</span></div>
+        <div className={styles.footer__brand}><img src="jb_logo_blanco.svg" /></div>
 
         <p className={styles.footer__copy}>
           © {year} Juan Betancor · Diseño &amp; Desarrollo Web
