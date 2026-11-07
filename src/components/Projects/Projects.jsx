@@ -16,7 +16,7 @@ const PROJECTS = [
     tags: ['WordPress', 'WooCommerce', 'Learndash',  'PHP'],
     type: 'Web · E-commerce',
     image:
-      'public/link-Academy.png',
+      'link-Academy.png',
     link: 'https://www.behance.net/gallery/175387027/e-learning-Web-Link-Academy',
   },
   {
