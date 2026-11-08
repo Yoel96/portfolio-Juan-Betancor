@@ -25,7 +25,6 @@ import {
   FaAws,
 } from 'react-icons/fa6';
 import {
-  TbBrandAdobe,
   TbBrandCSharp,
   TbSql,
 } from 'react-icons/tb';
@@ -59,6 +58,127 @@ function MicrosoftOfficeIcon() {
   );
 }
 
+// ── SVGs oficiales para aplicaciones de Adobe Suite ──
+function AdobePhotoshopIcon() {
+  return (
+    <svg width="1em" height="1em" viewBox="0 0 64 64" fill="none" style={{ display: 'block', borderRadius: '7px' }}>
+      <rect width="64" height="64" rx="14" fill="#001E36" />
+      <text
+        x="50%"
+        y="58%"
+        textAnchor="middle"
+        dominantBaseline="middle"
+        fontFamily="'Plus Jakarta Sans', sans-serif"
+        fontWeight="800"
+        fontSize="28"
+        fill="#31A8FF"
+      >
+        Ps
+      </text>
+    </svg>
+  );
+}
+
+function AdobeIllustratorIcon() {
+  return (
+    <svg width="1em" height="1em" viewBox="0 0 64 64" fill="none" style={{ display: 'block', borderRadius: '7px' }}>
+      <rect width="64" height="64" rx="14" fill="#330000" />
+      <text
+        x="50%"
+        y="58%"
+        textAnchor="middle"
+        dominantBaseline="middle"
+        fontFamily="'Plus Jakarta Sans', sans-serif"
+        fontWeight="800"
+        fontSize="28"
+        fill="#FF9A00"
+      >
+        Ai
+      </text>
+    </svg>
+  );
+}
+
+function AdobeInDesignIcon() {
+  return (
+    <svg width="1em" height="1em" viewBox="0 0 64 64" fill="none" style={{ display: 'block', borderRadius: '7px' }}>
+      <rect width="64" height="64" rx="14" fill="#49021F" />
+      <text
+        x="50%"
+        y="58%"
+        textAnchor="middle"
+        dominantBaseline="middle"
+        fontFamily="'Plus Jakarta Sans', sans-serif"
+        fontWeight="800"
+        fontSize="28"
+        fill="#FF3366"
+      >
+        Id
+      </text>
+    </svg>
+  );
+}
+
+function AdobePremiereIcon() {
+  return (
+    <svg width="1em" height="1em" viewBox="0 0 64 64" fill="none" style={{ display: 'block', borderRadius: '7px' }}>
+      <rect width="64" height="64" rx="14" fill="#00005B" />
+      <text
+        x="50%"
+        y="58%"
+        textAnchor="middle"
+        dominantBaseline="middle"
+        fontFamily="'Plus Jakarta Sans', sans-serif"
+        fontWeight="800"
+        fontSize="28"
+        fill="#EA77FF"
+      >
+        Pr
+      </text>
+    </svg>
+  );
+}
+
+function AdobeAfterEffectsIcon() {
+  return (
+    <svg width="1em" height="1em" viewBox="0 0 64 64" fill="none" style={{ display: 'block', borderRadius: '7px' }}>
+      <rect width="64" height="64" rx="14" fill="#00005B" />
+      <text
+        x="50%"
+        y="58%"
+        textAnchor="middle"
+        dominantBaseline="middle"
+        fontFamily="'Plus Jakarta Sans', sans-serif"
+        fontWeight="800"
+        fontSize="28"
+        fill="#9999FF"
+      >
+        Ae
+      </text>
+    </svg>
+  );
+}
+
+function AdobeXdIcon() {
+  return (
+    <svg width="1em" height="1em" viewBox="0 0 64 64" fill="none" style={{ display: 'block', borderRadius: '7px' }}>
+      <rect width="64" height="64" rx="14" fill="#470137" />
+      <text
+        x="50%"
+        y="58%"
+        textAnchor="middle"
+        dominantBaseline="middle"
+        fontFamily="'Plus Jakarta Sans', sans-serif"
+        fontWeight="800"
+        fontSize="28"
+        fill="#FF61F6"
+      >
+        Xd
+      </text>
+    </svg>
+  );
+}
+
 // Tecnologías de Desarrollo
 const DEV_TECH = [
   { name: 'JavaScript', icon: <SiJavascript color="#F7DF1E" /> },
@@ -84,10 +204,14 @@ const DEV_TECH = [
 // Tecnologías de Diseño y Creatividad
 const DESIGN_TECH = [
   { name: 'Figma', icon: <SiFigma color="#F24E1E" /> },
-  { name: 'Paquete Adobe', icon: <TbBrandAdobe color="#FA0F00" /> },
+  { name: 'Adobe Photoshop', icon: <AdobePhotoshopIcon /> },
+  { name: 'Adobe Illustrator', icon: <AdobeIllustratorIcon /> },
+  { name: 'Adobe InDesign', icon: <AdobeInDesignIcon /> },
+  { name: 'Adobe Premiere', icon: <AdobePremiereIcon /> },
+  { name: 'Adobe After Effects', icon: <AdobeAfterEffectsIcon /> },
+  { name: 'Adobe XD', icon: <AdobeXdIcon /> },
   { name: 'Blender', icon: <SiBlender color="#EA7600" /> },
   { name: 'Unity', icon: <SiUnity color="#0F172A" /> },
-  
   { name: 'Wordpress', icon: <SiWordpress color="#21759B" /> },
   { name: 'Suite Microsoft Office', icon: <MicrosoftOfficeIcon /> },
 ];

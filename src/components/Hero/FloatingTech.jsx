@@ -41,15 +41,16 @@ const PythonLogo = () => (
  * Estática (sin flotación), con escalado suave en hover.
  */
 const TECHS = [
+  { id: 'react',   label: 'React',        node: <SiReact color="#61DAFB" /> },
+  { id: 'js',      label: 'JavaScript',   node: <SiJavascript color="#F7DF1E" />, square: true },
+  { id: 'python',  label: 'Python',       node: <PythonLogo /> },
+  { id: 'php',     label: 'PHP',          node: <SiPhp color="#777BB4" /> },
   { id: 'ps',      label: 'Photoshop',    node: <PsLogo /> },
   { id: 'ai',      label: 'Illustrator',  node: <AiLogo /> },
   { id: 'pr',      label: 'Premiere Pro', node: <PrLogo /> },
   { id: 'blender', label: 'Blender',      node: <SiBlender color="#EA7600" /> },
   { id: 'unity',   label: 'Unity',        node: <SiUnity color="#0F172A" /> },
-  { id: 'react',   label: 'React',        node: <SiReact color="#61DAFB" /> },
-  { id: 'js',      label: 'JavaScript',   node: <SiJavascript color="#F7DF1E" />, square: true },
-  { id: 'python',  label: 'Python',       node: <PythonLogo /> },
-  { id: 'php',     label: 'PHP',          node: <SiPhp color="#777BB4" /> },
+
 ];
 
 export default function FloatingTech({ visible }) {

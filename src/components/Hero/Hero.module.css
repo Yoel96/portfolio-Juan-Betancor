@@ -301,6 +301,13 @@
     text-align: center;
     gap: 3em; 
   }
+  
+  .hero__ctas{
+
+    gap: 1.8rem;
+
+  }
+
   .hero__content { max-width: 100%; }
   .hero__description { max-width: 100%; }
   .hero__ctas { justify-content: center; }

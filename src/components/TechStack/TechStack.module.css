@@ -90,7 +90,7 @@
 .tech__columnCount {
   font-family: var(--font-mono);
   font-size: 0.72rem;
-  color: var(--color-muted);
+  color: var(--color-secondary);
   margin-left: auto;
   letter-spacing: 0.05em;
 }
